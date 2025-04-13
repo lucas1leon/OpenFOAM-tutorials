@@ -1,0 +1,63 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 12-86e126a7bc4d
+Exec   : foamRun
+Date   : Apr 12 2025
+Time   : 15:34:18
+Host   : "leon-ZenBook-UX450FDX-UX480FD"
+PID    : 8982
+I/O    : uncollated
+Case   : /home/leon/Documents/Projets/blog_CFD/exemples_OF/pitzDaily
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Selecting solver fluid
+Selecting thermodynamics package 
+{
+    type            hePsiThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          eConst;
+    equationOfState perfectGas;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+Selecting turbulence model type RAS
+Selecting RAS turbulence model kEpsilon
+#0  Foam::error::printStack(Foam::Ostream&) at ??:?
+#1  Foam::sigFpe::sigHandler(int) at ??:?
+#2  ? in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+#3  Foam::divide(Foam::Field<double>&, Foam::UList<double> const&, Foam::UList<double> const&) at ??:?
+#4  Foam::tmp<Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> > Foam::operator/<Foam::fvPatchField, Foam::volMesh>(Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> const&, Foam::tmp<Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> > const&) at ??:?
+#5  Foam::fluidThermo::nu() const at ??:?
+#6  Foam::RASModel<Foam::compressibleMomentumTransportModel>::nu() const at ??:?
+#7  Foam::RASModels::kEpsilon<Foam::compressibleMomentumTransportModel>::boundEpsilon() at ??:?
+#8  Foam::RASModels::kEpsilon<Foam::compressibleMomentumTransportModel>::kEpsilon(Foam::geometricOneField const&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<Foam::Vector<double>, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::viscosity const&, Foam::word const&) at ??:?
+#9  Foam::RASModel<Foam::compressibleMomentumTransportModel>::adddictionaryConstructorToTable<Foam::RASModels::kEpsilon<Foam::compressibleMomentumTransportModel> >::New(Foam::geometricOneField const&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<Foam::Vector<double>, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::viscosity const&) at ??:?
+#10  Foam::RASModel<Foam::compressibleMomentumTransportModel>::New(Foam::geometricOneField const&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<Foam::Vector<double>, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::viscosity const&) at ??:?
+#11  Foam::compressibleMomentumTransportModel::adddictionaryConstructorToTable<Foam::RASModel<Foam::compressibleMomentumTransportModel> >::NewcompressibleMomentumTransportModel(Foam::geometricOneField const&, Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<Foam::Vector<double>, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::viscosity const&) at ??:?
+#12  Foam::autoPtr<Foam::compressibleMomentumTransportModel> Foam::momentumTransportModel::New<Foam::compressibleMomentumTransportModel>(Foam::compressibleMomentumTransportModel::alphaField const&, Foam::compressibleMomentumTransportModel::rhoField const&, Foam::GeometricField<Foam::Vector<double>, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::viscosity const&) at ??:?
+#13  Foam::compressibleMomentumTransportModel::New(Foam::GeometricField<double, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<Foam::Vector<double>, Foam::fvPatchField, Foam::volMesh> const&, Foam::GeometricField<double, Foam::fvsPatchField, Foam::surfaceMesh> const&, Foam::viscosity const&) at ??:?
+#14  Foam::solvers::isothermalFluid::isothermalFluid(Foam::fvMesh&, Foam::autoPtr<Foam::fluidThermo>) at ??:?
+#15  Foam::solvers::isothermalFluid::isothermalFluid(Foam::fvMesh&) at ??:?
+#16  Foam::solvers::fluid::fluid(Foam::fvMesh&) at ??:?
+#17  Foam::solver::addfvMeshConstructorToTable<Foam::solvers::fluid>::New(Foam::fvMesh&) at ??:?
+#18  Foam::solver::New(Foam::word const&, Foam::fvMesh&) at ??:?
+#19  ? in "/opt/openfoam12/platforms/linux64GccDPInt32Opt/bin/foamRun"
+#20  ? in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+#21  __libc_start_main in "/usr/lib/x86_64-linux-gnu/libc.so.6"
+#22  ? in "/opt/openfoam12/platforms/linux64GccDPInt32Opt/bin/foamRun"
+Floating point exception (core dumped)

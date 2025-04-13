@@ -1,0 +1,57 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      physicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+/*
+This is where the fluid model. For an incompressible fluid, the viscosity must be modeled, with one available option being a constant velocity model.
+When it comes to compressible flows, you need to define a general model to modelize the fluid. Here, a perfect gas model is chosen, where the gamma coefficient is determined using the molecular weight and the Cv coefficient. 
+A constant viscosity is specified. The OpenFOAM website provides more informations on more complex models.
+*/ 
+
+thermoType
+{
+    type            hePsiThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          eConst;
+    equationOfState perfectGas;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight   28.9;
+    }
+    thermodynamics
+    {
+        Cv          712;
+        hf          0;
+    }
+    transport
+    {
+        mu          1.8e-05;
+        Pr          0.7;
+    }
+}
+
+/*
+viscosityModel  constant;
+
+nu              [0 2 -1 0 0 0 0] 1e-05;
+*/
+// ************************************************************************* //
