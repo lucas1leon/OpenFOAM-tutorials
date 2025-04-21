@@ -15,5 +15,7 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #includeFunc patchAverage(patch=inlet, fields=(p U))
+#includeFunc residuals
+#includeFunc patchFlowRate
 
 // ************************************************************************* //
